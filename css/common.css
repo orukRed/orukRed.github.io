@@ -55,27 +55,26 @@ main{
 
 #news{
 	display: block;
-	padding-top: 100%;	/* padding-topとmargin-topで100%,-100%とすることで<a>タグでジャンプしたときのズレを防止 */
-	margin-top: -100%;
-	padding-bottom: 10%;
+	padding-top: 10%;	/* padding-topとmargin-topで100%,-100%とすることで<a>タグでジャンプしたときのズレを防止 */
+	margin-top: -10%;
+	/* padding-bottom: 50%;
+	margin-bottom: 50%; */
 }
 
 #about{
 	display: block;
-	
-	padding-top: 100%;
-	margin-top: -100%; 
-	padding-bottom: 10%;
-	/* margin-bottom: -10%; */
-	/* margin-bottom: 100%; */
+	padding-top: 10%;
+	margin-top: -10%;
+	/* padding-bottom: 50%;
+	margin-bottom: -50%; */
 }
 
 #program{
 	display: block;
-	padding-top: 100%;	/* paddingとマージンで100%,-100%とすることで<a>タグでジャンプしたときのズレを防止 */
-	margin-top: -100%;
-	padding-bottom: 10%;
-	/* margin-bottom: 100%; */
+	padding-top: 10%;
+	margin-top: -10%;
+	/* padding-bottom: 50%;
+	margin-bottom: -50%; */
 }
 
 .content_description{
