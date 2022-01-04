@@ -1,0 +1,107 @@
+/* ヘッダーの余白消し */
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+/* リンクの文字 */
+header a,a:visited,a:active{
+	color: inherit;
+	/* text-decoration: none; */
+}
+
+header a:hover{
+	color: brown;
+}
+
+
+/* ヘッダー横並び */
+header{
+	position:  fixed;
+	background-color: #a55d1a;
+	color: white;
+	width: 100%;
+	margin-top: 0;
+}
+ul#header_nav{
+	text-align: center;
+	font-weight: bold;
+}
+
+header ul{
+	background-color: #ffa959;
+
+}
+ul#header_nav li{
+	padding-left: 2%;
+	padding-right: 2%;
+	/* padding-left: 10%; */
+	
+
+	color: white;
+	display: inline-block;
+
+}
+
+h1{
+	text-align: center;
+}
+
+main{
+	text-align: center;
+	padding-top: 15%;
+	padding-bottom: 5%;
+}
+
+#news{
+	display: block;
+	padding-top: 100%;	/* padding-topとmargin-topで100%,-100%とすることで<a>タグでジャンプしたときのズレを防止 */
+	margin-top: -100%;
+	padding-bottom: 10%;
+}
+
+#about{
+	display: block;
+	
+	padding-top: 100%;
+	margin-top: -100%; 
+	padding-bottom: 10%;
+	/* margin-bottom: -10%; */
+	/* margin-bottom: 100%; */
+}
+
+#program{
+	display: block;
+	padding-top: 100%;	/* paddingとマージンで100%,-100%とすることで<a>タグでジャンプしたときのズレを防止 */
+	margin-top: -100%;
+	padding-bottom: 10%;
+	/* margin-bottom: 100%; */
+}
+
+.content_description{
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+/* フッター */
+footer{
+	position: fixed;
+	/* right: 0; */
+	bottom: 0;
+	background-color: #ffa959;
+	width: 100%;
+}
+
+/* フッター右側から並べる */
+ul#footer_nav li{
+	padding-left: 25px;
+	display: inline-block;
+	float: right;
+}
+
+/* ヘッダーSNSアイコンサイズ */
+.footer_img{
+	width: 64px;
+	margin-top: 5px;
+	margin-bottom: 0px;
+}
