@@ -7,21 +7,21 @@
 /* リンクの文字 */
 header a,a:visited,a:active{
 	color: inherit;
-	/* text-decoration: none; */
 }
 
 header a:hover{
-	color: brown;
+	color: saddlebrown
 }
 
 
 /* ヘッダー横並び */
 header{
 	position:  fixed;
-	background-color: #a55d1a;
+	background-color: #ca670b;
 	color: white;
 	width: 100%;
 	margin-top: 0;
+	z-index: 10;
 }
 ul#header_nav{
 	text-align: center;
@@ -30,17 +30,12 @@ ul#header_nav{
 
 header ul{
 	background-color: #ffa959;
-
 }
 ul#header_nav li{
 	padding-left: 2%;
 	padding-right: 2%;
-	/* padding-left: 10%; */
-	
-
 	color: white;
 	display: inline-block;
-
 }
 
 h1{
@@ -54,6 +49,10 @@ main{
 }
 
 main div{
+	margin-bottom: 10%;
+}
+
+.contens{
 	margin-bottom: 100%;
 }
 
@@ -61,36 +60,49 @@ main div{
 	display: block;
 	padding-top: 10%;	/* padding-topとmargin-topで100%,-100%とすることで<a>タグでジャンプしたときのズレを防止 */
 	margin-top: -10%;
-	/* padding-bottom: 50%;
-	margin-bottom: 50%; */
 }
 
 #about{
 	display: block;
 	padding-top: 10%;
 	margin-top: -10%;
-	/* padding-bottom: 50%;
-	margin-bottom: -50%; */
 }
 
 #program{
 	display: block;
 	padding-top: 10%;
 	margin-top: -10%;
-	margin-bottom: -100%;
-	/* padding-bottom: 50%;
-	margin-bottom: -50%; */
 }
 
-.content_description{
+#program_description{
+	display: grid;
+	grid-template-columns: repeat(auto,auto);
+	gap:0px;
+	flex-wrap: wrap;		/* アイテムを折り返して複数行に上から下に並べる */
+}
+
+.program_description_item{
+	position: sticky;
 	margin-left: 10%;
 	margin-right: 10%;
+}
+
+
+.program_img{
+	width: auto;
+	height: auto;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.program_link_img{
+	width: 32px;
+	margin-bottom: ;	
 }
 
 /* フッター */
 footer{
 	position: fixed;
-	/* right: 0; */
 	bottom: 0;
 	background-color: #ffa959;
 	width: 100%;
