@@ -14,12 +14,12 @@
 
     <div class="main">
       <div side-menu class="flex flex-row-reverse">
-        <div class="w-1/7 h-full shadow-md bg-gradient-to-l from-slate-800 px-1 absolute">
-          <p class="font-black text-3xl p-4">orukred</p>
+        <div class="w-1/7 h-screen shadow-md bg-gradient-to-l from-slate-800 px-1 absolute">
+          <p class="font-black text-3xl p-4">orukRed</p>
           <img class="w-32 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src="./img/momizi_orukred_icon.png" alt="Bordered avatar" />
           <div class="p-2">
-            <p>プログラム書いたりしてます</p>
-            <p>TyranoScript syntax開発中</p>
+            <p>プログラム書いたりしてます。</p>
+            <p>TyranoScript syntax開発中。</p>
           </div>
 
           <div class="flex space-x-5">
@@ -92,7 +92,73 @@
         </div>
       </div>
 
-      <div contents class="">ここにコンテンツ</div>
+      <div class="p-24">
+        <div class="text-5xl pb-5">About</div>
+        <div class="text-2xl">orukRedのポートフィリオサイトです。</div>
+        <div class="text-2xl pb-5">なにかニュースがあれば載せたり。</div>
+        <div class="relative overflow-x-auto">
+          <table class="w-1/2 text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-6 py-3">更新内容</th>
+                <th scope="col" class="px-6 py-3">更新日時</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">サイトリニューアル</th>
+                <td class="px-6 py-4">2022/6/16</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">サイト作成</th>
+                <td class="px-6 py-4">2022/1/6</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="p-24">
+        <div class="flex space-x-5">
+          <div class="text-5xl">TyranoScript syntax</div>
+          <div>
+            <a href="https://github.com/orukRed/tyranosyntax">
+              <img class="w-14 h-14 rounded-full" src="./img/GitHub-Mark-Light-64px.png" alt="Rounded avatar" />
+            </a>
+          </div>
+          <div>
+            <a href="https://marketplace.visualstudio.com/items?itemName=orukred-tyranosyntax.tyranosyntax">
+              <img class="w-14 h-14 rounded-full" src="./img/vscode.svg" alt="Rounded avatar" />
+            </a>
+          </div>
+        </div>
+        <div class="text-xl pb-5">TypeScript + vscodeAPI</div>
+        <div class="text-2xl">vscodeで動くティラノスクリプト用の拡張機能です。</div>
+        <div class="text-2xl">ハイライトやタグ補完、診断機能など。</div>
+        <div class="text-2xl">現在も更新中。</div>
+
+        <img class="max-w-2xl" src="./img/program/tyranosyntax.PNG" alt="Rounded avatar" />
+      </div>
+
+      <div class="p-24">
+        <div class="flex space-x-5">
+          <div class="text-5xl">ここはお前のチラシ裏</div>
+          <div>
+            <a href="https://github.com/orukRed/YourDiary">
+              <img class="w-14 h-14 rounded-full" src="./img/GitHub-Mark-Light-64px.png" alt="Rounded avatar" />
+            </a>
+          </div>
+        </div>
+        <div class="text-xl pb-5">vue + nuxtjs + firebase</div>
+
+        <div class="text-2xl">匿名で書き込んだ内容が二日間だけ閲覧できるテキスト投稿サービス</div>
+        <div class="text-2xl">「うるせーチラシの裏にでも書いてろ」と言われそうなことを吐き出すのに是非。</div>
+        <div class="text-2xl">……といいたいけど管理者はDB見れてしまうのであんまり良くない。</div>
+
+        <img class="max-w-2xl" src="./img/program/tiraura.PNG" alt="Rounded avatar" />
+      </div>
     </div>
 
     <!-- <div id="counter">Counter:{{counter}}</div> -->
