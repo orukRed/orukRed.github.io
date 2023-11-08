@@ -10,6 +10,9 @@ ARG NODE_VERSION=20.9.0
 # Use node image for base image for all stages.
 FROM node:${NODE_VERSION}-alpine as base
 
+# 権限追加
+RUN mkdir -p /usr/src/app && chown -R node:node /usr/src/app
+
 # Set working directory for all build stages.
 WORKDIR /usr/src/app
 
@@ -23,9 +26,9 @@ FROM base as deps
 # Leverage bind mounts to package.json and package-lock.json to avoid having to copy them
 # into this layer.
 RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=package-lock.json,target=package-lock.json \
-    --mount=type=cache,target=/root/.npm \
-    npm ci --omit=dev
+	--mount=type=bind,source=package-lock.json,target=package-lock.json \
+	--mount=type=cache,target=/root/.npm \
+	npm ci --omit=dev
 
 ################################################################################
 # Create a stage for building the application.
@@ -34,9 +37,9 @@ FROM deps as build
 # Download additional development dependencies before building, as some projects require
 # "devDependencies" to be installed to build. If you don't need this, remove this step.
 RUN --mount=type=bind,source=package.json,target=package.json \
-    --mount=type=bind,source=package-lock.json,target=package-lock.json \
-    --mount=type=cache,target=/root/.npm \
-    npm ci
+	--mount=type=bind,source=package-lock.json,target=package-lock.json \
+	--mount=type=cache,target=/root/.npm \
+	npm ci
 
 # Copy the rest of the source files into the image.
 COPY . .
@@ -49,13 +52,15 @@ RUN npm run build
 FROM base as final
 
 # Use production node environment by default.
-ENV NODE_ENV production
+# ENV NODE_ENV production npm run build
 
 # Run the application as a non-root user.
 USER node
 
 # Copy package.json so that package manager commands can be used.
-COPY package.json .
+COPY --chown=node:node package.json .
+
+RUN npm install
 
 # Copy the production dependencies from the deps stage and also
 # the built application from the build stage into the image.
