@@ -12,6 +12,7 @@ services:
     build:
       context: .
     environment:
+      # CHOKIDAR_USEPOLLING: true
       NODE_ENV: production
     ports:
       - 3000:3000
@@ -48,4 +49,3 @@ services:
 # secrets:
 #   db-password:
 #     file: db/password.txt
-

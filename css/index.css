@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /* ヘッダーの余白消し */
 html {
   min-height: 100%;
@@ -9,4 +10,5 @@ body {
   background: linear-gradient(#3e443e, #080808);
   color: rgba(255, 255, 255, 0.842);
 }
+
 /*# sourceMappingURL=index.css.map */
