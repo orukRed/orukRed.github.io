@@ -20,7 +20,7 @@ export default function Page() {
         "アップデート継続中です。",
         "詳しくはGitHubのREADMEとCHANGELOGをご覧ください。"],
       technologies: ["TypeScript", "vscodeAPI"],//使用言語やフレームワーク
-      image: "/program/tyranosyntax1.png",
+      image: "/program/tyranosyntax.png",
       links: ["app", "github"],//app:そのアプリへのリンク github:githubリポジトリへのリンク
     },
   ];
@@ -56,6 +56,7 @@ export default function Page() {
           <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
             <h3 className="text-default-900 text-large font-bold underline underline-offset-4">
               {/* ここにif文で、linksにappがあるならカードクリックでアプリのページへ、githubがあるならgithubアイコンとリンク追加 */}
+              {/* マウスオンするたびにアニメーションさせて、リンク先でDLページがあることを示したい */}
               {application.name}
             </h3>
             <p className="text-default-400 ">
