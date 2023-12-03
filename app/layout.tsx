@@ -15,7 +15,7 @@ import { Providers } from "./providers";
 import { Button } from '@nextui-org/button';
 import { Accordion } from '@nextui-org/accordion';
 import { AccordionItem } from '@nextui-org/accordion';
-import { faCode } from '@fortawesome/free-solid-svg-icons'
+import { faCircleInfo, faCode, faLink, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFaceSmile, faMessage } from '@fortawesome/free-regular-svg-icons'
 import { LayoutProps } from '../.next/types/app/layout';
@@ -24,6 +24,8 @@ import { Divider, Listbox, ListboxItem, ScrollShadow, Spacer, User } from '@next
 import { faCreativeCommonsNd } from '@fortawesome/free-brands-svg-icons'
 import { faSquareXTwitter } from '@fortawesome/free-brands-svg-icons/faSquareXTwitter'
 import { faSquareGithub } from '@fortawesome/free-brands-svg-icons/faSquareGithub'
+import Link from 'next/link'
+import { useCallback, useState } from 'react'
 
 
 //use clientのときはMetadataの定義をコメント必要
@@ -33,12 +35,26 @@ import { faSquareGithub } from '@fortawesome/free-brands-svg-icons/faSquareGithu
 // }
 
 const iconSize = 35;
+const hoverColor = "text-blue-400";
+const clickColor = "text-blue-500";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const enterIconMotion = useCallback(() => {
+    setIsHovered(true);
+  }, []);
+  const leaveIconMotion = useCallback(() => {
+    setIsHovered(false);
+  }, []);
+  const iconMotion = useCallback((value: boolean) => {
+    setIsHovered(value);
+  }, []);
+
   return (
     // ここの階層を崩すとホットリロードがただしく動作しなくなる。
     <html lang="en" className='dark'>
@@ -46,120 +62,108 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Providers>
-          {/* リストボックスで大きさそろえる */}
-          {/* マウスオンでアニメーションさせたい}
-          {/* メイン画面が下の方に行ってしまうのでその修正 */}
-          {/* accordion展開するとヘッダーずれるので修正 */}
-          {/* カードレイアウトにするのいいかも accordionメニューもやめてそれがいいかもしれない */}
+
           <header className=''>
           </header>
-          <div className='flex flex-row bg-gray-700'>
 
+          <div className='flex flex-row bg-gray-700 bg-gradient-to-r from-slate-900 h-full min-h-screen'>
             {/* sidebar */}
-            <div className='w-64 h-screen bg-gradient-to-r from-slate-900'>
-              <ScrollShadow hideScrollBar className="h-full">
+            <div className='flex fixed w-64 h-screen '>
+              <ScrollShadow hideScrollBar >
                 <nav className=''>
-                  <p>
-                    Orukred
-                  </p>
-                  <User
-                    name=""
-                    avatarProps={{
-                      isBordered: true,
-                      radius: "full",
-                      src: "/orukred_icon.png",
-                      size: "lg",
-                      className: "w-32 h-32"
-                    }}
-                  />
-                  <div className="flex space-x-2">
-                    <Image src={'/icon/github/github-mark-white.svg'} alt={'GitHub'} width={iconSize} height={iconSize} />
-                    <Image src={'/icon/x/logo.svg'} alt={'X'} width={iconSize} height={iconSize} />
-                    <Image src={'/icon/qiita/qiita.png'} alt={'Qiita'} width={iconSize} height={iconSize} />
-                    <Image src={'/icon/zenn/logo-only.svg'} alt={'Zenn'} width={iconSize} height={iconSize} />
+                  <div className='flow p-5'>
+                    <p className='font-bold text-2xl'>
+                      OrukRed
+                    </p>
+                    <User
+                      name=""
+                      avatarProps={{
+                        isBordered: true,
+                        radius: "full",
+                        src: "/orukred_icon.png",
+                        className: "w-32 h-32"
+                      }}
+                    />
+                    <p>
+                      プログラム書いてます。<br />
+                      バグ報告などはContactからお願いします
+                    </p>
+                    <Spacer y={3} />
+                    <div className="flex space-x-4">
+                      <Link className='' href="https://github.com/orukRed">
+                        <Image src={'/icon/github/github-mark-white.svg'} aria-label="Github" alt={'GitHub'} width={iconSize} height={iconSize} />
+                      </Link>
+                      <Link href="https://twitter.com/orukred">
+                        <Image src={'/icon/x/logo.svg'} aria-label="X" alt={'X'} width={iconSize} height={iconSize} />
+                      </Link>
+                      <Link href="https://qiita.com/OrukRed">
+                        <Image src={'/icon/qiita/qiita.png'} aria-label="Qiita" alt={'Qiita'} width={iconSize} height={iconSize} />
+                      </Link>
+                      <Link href="https://zenn.dev/orukred">
+                        <Image src={'/icon/zenn/logo-only.svg'} aria-label="Zenn" alt={'Zenn'} width={iconSize} height={iconSize} />
+                      </Link>
+                    </div>
+                    <Spacer y={5} />
+                    {/* TODO:マウスオンでアニメーションさせたい*/}
+                    <Listbox className='w-48 text-2xl space-y-1' variant='flat' >
+                      <ListboxItem
+                        key="a1"
+                        textValue="Profile"
+                        onMouseEnter={() => iconMotion(true)}
+                        onMouseLeave={() => iconMotion(false)}
+                      >
+                        <Link className='text-2xl flex items-center' href="/profile">
+                          <FontAwesomeIcon icon={faUser} className='mr-2' />
+                          Profile
+                        </Link>
+                      </ListboxItem>
+                      <ListboxItem key="a2" textValue="Profile">
+                        <Link className='text-2xl flex items-center' href="/information">
+                          <FontAwesomeIcon icon={faCircleInfo} className='mr-2' />
+                          Information
+                        </Link>
+                      </ListboxItem >
+                      <ListboxItem key="a3" textValue="Profile">
+                        <Link className='text-2xl flex items-center' href="https://forms.gle/yMCKuhX1Haa4kfrc8">
+                          <FontAwesomeIcon icon={faMessage} className='mr-2' />
+                          Contact
+                        </Link>
+                      </ListboxItem>
+                      <ListboxItem key="a4" textValue="Profile">
+                        <Link className='text-2xl flex items-center' href="/programs">
+                          <FontAwesomeIcon icon={faCode} className='mr-2' />
+                          Programs
+                        </Link>
+                      </ListboxItem>
+                      {/* <ListboxItem key="a5" textValue="Profile">
+                        <Link className='text-2xl flex items-center' href="/works">
+                          <FontAwesomeIcon icon={faCreativeCommonsNd} className='mr-2' />
+                          works
+                        </Link>
+                      </ListboxItem>
+                      <ListboxItem key="a6" textValue="Profile">
+                        <Link className='text-2xl flex items-center' href="/Link">
+                          <FontAwesomeIcon icon={faLink} className='mr-2' />
+                          Link
+                        </Link>
+                      </ListboxItem> */}
+                    </Listbox>
                   </div>
-                  <Spacer y={5} />
-                  <ul>
-                    <li>
-                      <span className='i-lucide-cat'>
-                        <FontAwesomeIcon icon={faFaceSmile} />
-                        <a href="#introduction">
-                          About
-                        </a>
-                      </span>
-                    </li>
-                    <li>
-                      <FontAwesomeIcon icon={faMessage} />
-                      <a href="#contact">
-                        Contact
-                      </a>
-                    </li>
-                    <li>
-                      <Accordion>
-                        <AccordionItem key="1" aria-label="Accordion 1" title="Programs" startContent={<FontAwesomeIcon icon={faCode} />}>
-                          <ul>
-                            <li>
-                              <a>
-                                TyranoScript_syntax
-                              </a>
-                            </li>
-                            <li>
-                              <a>
-                                ここはお前のチラシ裏
-                              </a>
-                            </li>
-                            <li>
-                              <a>
-                                ポートフィリオ
-                              </a>
-                            </li>
-                          </ul>
-                        </AccordionItem>
-                      </Accordion>
-                    </li>
-                    <li>
-                      <FontAwesomeIcon icon={faCreativeCommonsNd} />
-                      works
-                    </li>
-                  </ul>
                 </nav>
               </ScrollShadow>
             </div>
 
             {/* メインコンテンツ */}
-            <main className='flex-grow p-4'>
-              {/* children　でpageの中身表示 */}
+            <main className='flex-grow p-4 ml-72'>
               {children}
-              <section id="introduction">
-                自己紹介の内容
-              </section>
 
-              <section id="programs">
-                プログラム作品のリスト
-                <ul>
-                  ここに作品
-                </ul>
-              </section>
-              <section id="contact">
-                コンタクトの内容
-              </section>
-              <section id="works">
-                <ul>
-                  お仕事一覧
-                </ul>
-              </section>
             </main>
-
-
+            <footer className=''>
+            </footer>
           </div>
-
-
-
-
-
         </Providers>
       </body>
-    </html>
+    </html >
   )
 }
 
