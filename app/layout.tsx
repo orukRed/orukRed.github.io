@@ -1,7 +1,6 @@
 "use client"
 //use clientならaccordionが動く
 
-import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
@@ -12,18 +11,11 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 
 import { Providers } from "./providers";
-import { Button } from '@nextui-org/button';
-import { Accordion } from '@nextui-org/accordion';
-import { AccordionItem } from '@nextui-org/accordion';
-import { faCircleInfo, faCode, faLink, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faCode, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFaceSmile, faMessage } from '@fortawesome/free-regular-svg-icons'
-import { LayoutProps } from '../.next/types/app/layout';
+import { faMessage } from '@fortawesome/free-regular-svg-icons'
 import Image from 'next/image';
-import { Avatar, Divider, Listbox, ListboxItem, ScrollShadow, Spacer, User } from '@nextui-org/react'
-import { faCreativeCommonsNd } from '@fortawesome/free-brands-svg-icons'
-import { faSquareXTwitter } from '@fortawesome/free-brands-svg-icons/faSquareXTwitter'
-import { faSquareGithub } from '@fortawesome/free-brands-svg-icons/faSquareGithub'
+import { Avatar, Listbox, ListboxItem, ScrollShadow, Spacer } from '@nextui-org/react'
 import Link from 'next/link'
 import { useCallback, useState } from 'react'
 
@@ -38,22 +30,40 @@ const iconSize = 35;
 const hoverColor = "text-blue-400";
 const clickColor = "text-blue-500";
 
+
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isProfileMouseHover, setProfileMouseHover] = useState(false);
+  const [isContactMouseHover, setContactMouseHover] = useState(false);
+  const [isProgramsMouseHover, setProgramsMouseHover] = useState(false);
 
-  const enterIconMotion = useCallback(() => {
-    setIsHovered(true);
-  }, []);
-  const leaveIconMotion = useCallback(() => {
-    setIsHovered(false);
-  }, []);
-  const iconMotion = useCallback((value: boolean) => {
-    setIsHovered(value);
-  }, []);
+
+
+  const profileMotionIcon: () => JSX.Element = useCallback(() => {
+    if (isProfileMouseHover) {
+      return <FontAwesomeIcon icon={faUser} className='mr-2' bounce />
+    }
+    return <FontAwesomeIcon icon={faUser} className='mr-2' />
+  }, [isProfileMouseHover]);
+
+  const contactMotionIcon: () => JSX.Element = useCallback(() => {
+    if (isContactMouseHover) {
+      return <FontAwesomeIcon icon={faMessage} className='mr-2' bounce />
+    }
+    return <FontAwesomeIcon icon={faMessage} className='mr-2' />
+  }, [isContactMouseHover]);
+
+  const programsMotionIcon: () => JSX.Element = useCallback(() => {
+    if (isProgramsMouseHover) {
+      return < FontAwesomeIcon icon={faCode} className='mr-2' bounce />
+    }
+    return <FontAwesomeIcon icon={faCode} className='mr-2' />
+  }, [isProgramsMouseHover]);
+
 
   return (
     // ここの階層を崩すとホットリロードがただしく動作しなくなる。
@@ -75,11 +85,13 @@ export default function RootLayout({
                     <p className='font-bold text-2xl'>
                       OrukRed
                     </p>
-                    <Avatar
-                      isBordered
-                      radius="full"
+                    <Image
+                      className="border-3 border-slate-600 w-32 h-32 rounded-full object-cover"
                       src="/orukred_icon.png"
-                      className="w-32 h-32"
+                      alt="Avatar"
+                      sizes='100vw'
+                      width={1}
+                      height={1}
                     />
                     <p>
                       プログラム書いてます。<br />
@@ -87,30 +99,30 @@ export default function RootLayout({
                     </p>
                     <Spacer y={3} />
                     <div className="flex space-x-4">
-                      <Link className='' href="https://github.com/orukRed">
+
+                      <Link className='rounded hover:bg-gray-600' href="https://github.com/orukRed">
                         <Image src={'/icon/github/github-mark-white.svg'} aria-label="Github" alt={'GitHub'} width={iconSize} height={iconSize} />
                       </Link>
-                      <Link href="https://twitter.com/orukred">
+                      <Link className='rounded hover:bg-gray-600' href="https://twitter.com/orukred">
                         <Image src={'/icon/x/logo.svg'} aria-label="X" alt={'X'} width={iconSize} height={iconSize} />
                       </Link>
-                      <Link href="https://qiita.com/OrukRed">
+                      <Link className='rounded hover:bg-gray-600' href="https://qiita.com/OrukRed">
                         <Image src={'/icon/qiita/qiita.png'} aria-label="Qiita" alt={'Qiita'} width={iconSize} height={iconSize} />
                       </Link>
-                      <Link href="https://zenn.dev/orukred">
+                      <Link className='rounded hover:bg-gray-600' href="https://zenn.dev/orukred">
                         <Image src={'/icon/zenn/logo-only.svg'} aria-label="Zenn" alt={'Zenn'} width={iconSize} height={iconSize} />
                       </Link>
                     </div>
                     <Spacer y={5} />
-                    {/* TODO:マウスオンでアニメーションさせたい*/}
                     <Listbox className='w-48 text-2xl space-y-1' variant='flat' >
                       <ListboxItem
                         key="a1"
                         textValue="Profile"
-                        onMouseEnter={() => iconMotion(true)}
-                        onMouseLeave={() => iconMotion(false)}
+                        onMouseEnter={() => setProfileMouseHover(true)}
+                        onMouseLeave={() => setProfileMouseHover(false)}
                       >
                         <Link className='text-2xl flex items-center' href="/profile">
-                          <FontAwesomeIcon icon={faUser} className='mr-2' />
+                          {profileMotionIcon()}
                           Profile
                         </Link>
                       </ListboxItem>
@@ -120,15 +132,24 @@ export default function RootLayout({
                           Information
                         </Link>
                       </ListboxItem > */}
-                      <ListboxItem key="a3" textValue="Profile">
+                      <ListboxItem
+                        key="a3"
+                        textValue="Profile"
+                        onMouseEnter={() => setContactMouseHover(true)}
+                        onMouseLeave={() => setContactMouseHover(false)}>
                         <Link className='text-2xl flex items-center' href="https://forms.gle/yMCKuhX1Haa4kfrc8">
-                          <FontAwesomeIcon icon={faMessage} className='mr-2' />
+                          {contactMotionIcon()}
                           Contact
                         </Link>
                       </ListboxItem>
-                      <ListboxItem key="a4" textValue="Profile">
+                      <ListboxItem
+                        key="a4"
+                        textValue="Profile"
+                        onMouseEnter={() => setProgramsMouseHover(true)}
+                        onMouseLeave={() => setProgramsMouseHover(false)}
+                      >
                         <Link className='text-2xl flex items-center' href="/programs">
-                          <FontAwesomeIcon icon={faCode} className='mr-2' />
+                          {programsMotionIcon()}
                           Programs
                         </Link>
                       </ListboxItem>
