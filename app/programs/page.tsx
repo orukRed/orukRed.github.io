@@ -34,7 +34,7 @@ const applications: AppData[] = [
       Updating: true,
       Released: true,
     },
-    image: "/program/tyranosyntax.png",
+    image: "/program/_tyranosyntax.png",
     appUrl: "https://marketplace.visualstudio.com/items?itemName=orukred-tyranosyntax.tyranosyntax",
     githubUrl: "https://github.com/orukRed/tyranosyntax"
   }, {
@@ -58,7 +58,7 @@ const applications: AppData[] = [
     ],
     technologies: ["Nuxt.js", "Firebase"],
     badges: { Suspended: true },
-    image: "/program/tiraura.png",
+    image: "/program/_tiraura.png",
     githubUrl: "https://github.com/orukRed/YourDiary"
   },
 ];
@@ -143,7 +143,7 @@ function ApplicationCards({ applications }: { applications: AppData[] }) {
       {applications.map((application, key) => {
         return (
           <div key={key}>
-            <Card className="py-4  max-w-screen">
+            <Card className="flex py-4 max-w-screen max-w-4xl" >
               <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                 {badges(application.badges)}
                 <Spacer y={2} />
