@@ -11,7 +11,7 @@ const nextConfig = {
     }
     return config
   },
-  output: "export"//静的サイト出力に必要
+  output: 'export',//静的サイト出力に必要
 }
 
 module.exports = nextConfig
