@@ -159,9 +159,7 @@ function ApplicationCards({ applications }: { applications: AppData[] }) {
                 <div className="text-default-900">{formatDescription(application.descriptions)}</div>
               </CardHeader>
               <CardBody className="overflow-visible py-2">
-                <Image
-                  alt="screenshot"
-                  aria-label="screenshot"
+                <img
                   className="rounded-xl"
                   src={application.image}
                   sizes='100vw'
