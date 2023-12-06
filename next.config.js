@@ -10,7 +10,8 @@ const nextConfig = {
       ignored: ['node_modules']
     }
     return config
-  }
+  },
+  output: "export"//静的サイト出力に必要
 }
 
 module.exports = nextConfig

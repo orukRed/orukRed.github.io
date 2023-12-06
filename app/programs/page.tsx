@@ -92,7 +92,7 @@ function FormatTechnology({ technologies }: { technologies: string[] }) {
 }
 
 function githubIcon(url: string | undefined) {
-  if (!url) { return (<></>) }
+  if (!url || url === undefined) { return (<></>) }
   return (
     <Link className='' href={url}>
       <Image className='rounded hover:bg-gray-600' style={{ objectFit: 'contain' }} src={'/icon/github/github-mark-white.svg'} aria-label="Github" alt={'GitHub'} sizes='100vw' width={30} height={30} />
@@ -106,18 +106,19 @@ function githubIcon(url: string | undefined) {
  * @returns 
  */
 function appUrlButton(url: string | undefined) {
-  if (!url) { return (<></>) }
+  if (!url || url === undefined) { return (<></>) }
   return (
     <>
-      <Link className='flex justify-end mt-3' href={url}>
-        <Button
-          style={{ objectFit: 'contain' }}
-          radius='full'
-          color='primary'
-        >
-          App page
-        </Button>
-      </Link>
+      <div className='inline-flex flex-row-reverse'>
+        <Link href={url}>
+          <Button
+            radius='full'
+            color='primary'
+          >
+            App page
+          </Button>
+        </Link>
+      </div>
     </>
   )
 }
@@ -146,7 +147,7 @@ function ApplicationCards({ applications }: { applications: AppData[] }) {
               <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                 {badges(application.badges)}
                 <Spacer y={2} />
-                <div className={`flex text-default-900 text-large font-bold underline-offset-4 ${application.appUrl ? ' ' : ''}`}>
+                <div className={`flex text-default-900 text-large font-bold underline-offset-4 ${application.appUrl ? '' : ''}`}>
                   {application.name}
                   <Spacer x={2} />
                   {githubIcon(application.githubUrl)}

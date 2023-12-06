@@ -11,7 +11,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 config.autoAddCss = false;
 
 import { Providers } from "./providers";
-import { faCode, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faCode, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMessage } from '@fortawesome/free-regular-svg-icons'
 import Image from 'next/image';
@@ -27,10 +27,6 @@ import { useCallback, useState } from 'react'
 // }
 
 const iconSize = 35;
-const hoverColor = "text-blue-400";
-const clickColor = "text-blue-500";
-
-
 
 export default function RootLayout({
   children,
@@ -40,7 +36,7 @@ export default function RootLayout({
   const [isProfileMouseHover, setProfileMouseHover] = useState(false);
   const [isContactMouseHover, setContactMouseHover] = useState(false);
   const [isProgramsMouseHover, setProgramsMouseHover] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false);
 
 
   const profileMotionIcon: () => JSX.Element = useCallback(() => {
@@ -77,15 +73,23 @@ export default function RootLayout({
           </header>
 
           <div className='flex flex-row bg-gray-700 bg-gradient-to-r from-slate-900 h-full min-h-screen'>
+
+            {/* レスポンシブ対応のハンバーガーメニュー */}
+            <div className="fixed p-5 right-0 top-0 flex justify-end md:hidden z-50">
+              <button onClick={() => setIsOpen(!isOpen)} className={``}>
+                <FontAwesomeIcon icon={faBars} size="2xl" />
+              </button>
+            </div>
+
             {/* sidebar */}
-            <div className='flex fixed w-64 h-screen '>
+            <div className={`flex fixed w-64 h-screen md:block ${isOpen ? 'block z-40 h-screen w-screen bg-gray-700 bg-gradient-to-r from-slate-900' : 'hidden'}`}>
               <ScrollShadow hideScrollBar >
                 <nav className=''>
                   <div className='flow p-5'>
                     <p className='font-bold text-2xl'>
                       OrukRed
                     </p>
-                    <Image
+                    <img
                       className="border-3 border-slate-600 w-32 h-32 rounded-full object-cover"
                       src="/orukred_icon.png"
                       alt="Avatar"
@@ -172,9 +176,8 @@ export default function RootLayout({
             </div>
 
             {/* メインコンテンツ */}
-            <main className='flex-grow p-4 ml-72'>
+            <main className='flex-grow p-4 xs:ml-0 md:ml-72'>
               {children}
-
             </main>
             <footer className=''>
             </footer>
