@@ -13,3 +13,6 @@ Dockerfileがあるので以下でコンテナを作って起動してくださ�
 # TODO
 `docker run -it -p 3000:3000 -v ${PWD}:/usr/src/app -v /usr/src/app/node_modules orukred-page /usr/src/app`をすると
 /usr/local/bin/docker-entrypoint.sh: exec: line 11: /usr/src/app: Permission denied が発生。後日調査。
+
+# build
+npm run build
