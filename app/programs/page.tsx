@@ -38,6 +38,17 @@ const applications: AppData[] = [
     appUrl: "https://marketplace.visualstudio.com/items?itemName=orukred-tyranosyntax.tyranosyntax",
     githubUrl: "https://github.com/orukRed/tyranosyntax"
   }, {
+    name: "ポートフィリオ",
+    descriptions: [
+      "今見てるこれ。",
+      "何か作ったものが出来たらここに追加していく予定。",
+      "自己紹介とかニュースとかあれば書こうかなと思ったけどそんな書くことないので寂しいことに……"
+    ],
+    technologies: ["Next.js", "TailwindCSS", "NextUI"],
+    badges: { Released: true },
+    image: "/program/portfolio.png",
+    githubUrl: "https://github.com/orukRed/orukRed.github.io"
+  }, {
     name: "ここはお前のチラシ裏",
     descriptions: [
       "「うるせーチラシの裏にでも書いてろ」と言われそうなレベルのことを書くためのアプリ。",
@@ -49,17 +60,6 @@ const applications: AppData[] = [
     badges: { Suspended: true },
     image: "/program/tiraura.png",
     githubUrl: "https://github.com/orukRed/YourDiary"
-  }, {
-    name: "ポートフィリオ",
-    descriptions: [
-      "今見てるこれ。",
-      "何か作ったものが出来たらここに追加していく予定。",
-      "自己紹介とかニュースとかあれば書こうかなと思ったけどそんな書くことないので寂しいことに……"
-    ],
-    technologies: ["Next.js", "TailwindCSS", "NextUI"],
-    badges: { Released: true },
-    image: "/program/portfolio.png",
-    githubUrl: "https://github.com/orukRed/orukRed.github.io"
   },
 ];
 
