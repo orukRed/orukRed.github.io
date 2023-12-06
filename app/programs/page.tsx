@@ -161,7 +161,7 @@ function ApplicationCards({ applications }: { applications: AppData[] }) {
               <CardBody className="overflow-visible py-2">
                 <img
                   className="rounded-xl"
-                  src={application.image}
+                  src={`./${application.image}`}
                   sizes='100vw'
                   width={1}
                   height={1}
