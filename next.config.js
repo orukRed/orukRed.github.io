@@ -12,6 +12,7 @@ const nextConfig = {
     return config
   },
   output: 'export',//静的サイト出力に必要
+  images: { unoptimized: true }
 }
 
 module.exports = nextConfig
