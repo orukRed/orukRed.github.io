@@ -75,16 +75,19 @@ export default function RootLayout({
           <div className='flex flex-row bg-gray-700 bg-gradient-to-r from-slate-900 h-full min-h-screen'>
 
             {/* レスポンシブ対応のハンバーガーメニュー */}
-            <div className="fixed p-5 right-0 top-0 flex justify-end md:hidden z-50">
+            {/* <div className="fixed p-5 top-0 flex md:hidden z-50" style={{ right: 'calc(100vw - 100%)' }}> */}
+            <div className="sticky top-0 right-0 p-5 md:hidden z-50">
               <button onClick={() => setIsOpen(!isOpen)} className={``}>
                 <FontAwesomeIcon icon={faBars} size="2xl" />
               </button>
             </div>
 
             {/* sidebar */}
-            <div className={`flex fixed w-64 h-screen md:block ${isOpen ? 'block z-40 h-screen w-screen bg-gray-700 bg-gradient-to-r from-slate-900' : 'hidden'}`}>
+            <div className={`flex fixed w-64 h-screen md:block ${isOpen ? ' block z-40 h-screen w-screen bg-gray-700 bg-gradient-to-r from-slate-900' : 'hidden'}`}>
+              {/* <div className={`flex justify-end  ${isOpen ? ' block z-40 h-screen w-screen bg-gray-700 bg-gradient-to-r from-slate-900' : 'hidden'}`}> */}
               <ScrollShadow hideScrollBar >
-                <nav className=''>
+                {/* <nav className={`${isOpen ? 'ml-10' : ''}`}> */}
+                <nav className='ml-10 md:ml-0'>
                   <div className='flow p-5'>
                     <p className='font-bold text-2xl'>
                       OrukRed
@@ -124,6 +127,7 @@ export default function RootLayout({
                         textValue="Profile"
                         onMouseEnter={() => setProfileMouseHover(true)}
                         onMouseLeave={() => setProfileMouseHover(false)}
+                        onClick={() => setIsOpen(false)}
                       >
                         <Link className='text-2xl flex items-center' href="/profile">
                           {profileMotionIcon()}
@@ -140,7 +144,9 @@ export default function RootLayout({
                         key="a3"
                         textValue="Profile"
                         onMouseEnter={() => setContactMouseHover(true)}
-                        onMouseLeave={() => setContactMouseHover(false)}>
+                        onMouseLeave={() => setContactMouseHover(false)}
+                        onClick={() => setIsOpen(false)}
+                      >
                         <Link className='text-2xl flex items-center' href="https://forms.gle/yMCKuhX1Haa4kfrc8">
                           {contactMotionIcon()}
                           Contact
@@ -151,6 +157,7 @@ export default function RootLayout({
                         textValue="Profile"
                         onMouseEnter={() => setProgramsMouseHover(true)}
                         onMouseLeave={() => setProgramsMouseHover(false)}
+                        onClick={() => setIsOpen(false)}
                       >
                         <Link className='text-2xl flex items-center' href="/programs">
                           {programsMotionIcon()}
@@ -176,7 +183,7 @@ export default function RootLayout({
             </div>
 
             {/* メインコンテンツ */}
-            <main className='flex-grow p-4 xs:ml-0 md:ml-72'>
+            <main className={`flex-grow p-4 xs:ml-0 md:ml-72 ${isOpen ? 'hidden' : ''}`}>
               {children}
             </main>
             <footer className=''>
