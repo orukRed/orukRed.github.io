@@ -84,9 +84,7 @@ export default function RootLayout({
 
             {/* sidebar */}
             <div className={`flex fixed w-64 h-screen md:block ${isOpen ? ' block z-40 h-screen w-screen bg-gray-700 bg-gradient-to-r from-slate-900' : 'hidden'}`}>
-              {/* <div className={`flex justify-end  ${isOpen ? ' block z-40 h-screen w-screen bg-gray-700 bg-gradient-to-r from-slate-900' : 'hidden'}`}> */}
               <ScrollShadow hideScrollBar >
-                {/* <nav className={`${isOpen ? 'ml-10' : ''}`}> */}
                 <nav className='ml-10 md:ml-0'>
                   <div className='flow p-5'>
                     <p className='font-bold text-2xl'>
@@ -159,7 +157,7 @@ export default function RootLayout({
                         onMouseLeave={() => setProgramsMouseHover(false)}
                         onClick={() => setIsOpen(false)}
                       >
-                        <Link className='text-2xl flex items-center' href="/programs">
+                        <Link className='text-2xl flex items-center' href="/">
                           {programsMotionIcon()}
                           Programs
                         </Link>
