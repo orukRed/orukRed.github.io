@@ -143,7 +143,6 @@ export default function RootLayout({
                         textValue="Profile"
                         onMouseEnter={() => setContactMouseHover(true)}
                         onMouseLeave={() => setContactMouseHover(false)}
-                        onClick={() => setIsOpen(false)}
                       >
                         <Link className='text-2xl flex items-center' href="https://forms.gle/yMCKuhX1Haa4kfrc8">
                           {contactMotionIcon()}
