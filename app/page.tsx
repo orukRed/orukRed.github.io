@@ -53,13 +53,13 @@ const applications: AppData[] = [
     descriptions: [
       "「うるせーチラシの裏にでも書いてろ」と言われそうなレベルのことを書くためのアプリ。",
       "会員登録不要でいつでもかけるのが売り。",
-      "書き込むときにIPアドレスをDBに保存していなかったことに気が付き公開停止中。",
       "2020年あたりに何かWebアプリ作ろうと思っての習作。Nuxt.jsを選んだことに特に意味はない。機会があれば直すかリメイクして再公開したい",
     ],
     technologies: ["Nuxt.js", "Firebase"],
-    badges: { Suspended: true },
+    badges: { Released: true, },
     image: "/program/_tiraura.png",
-    githubUrl: "https://github.com/orukRed/YourDiary"
+    appUrl: "https://tiraura-861c1.web.app/View",
+    githubUrl: undefined
   },
 ];
 
@@ -110,14 +110,14 @@ function appUrlButton(url: string | undefined) {
   return (
     <>
       <div className='inline-flex flex-row-reverse'>
-        <Link href={url}>
+        <a href={url} target="_blank" rel="noopener noreferrer">
           <Button
             radius='full'
             color='primary'
           >
             App page
           </Button>
-        </Link>
+        </a>
       </div>
     </>
   )
