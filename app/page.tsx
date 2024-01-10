@@ -53,7 +53,7 @@ const applications: AppData[] = [
     descriptions: [
       "「うるせーチラシの裏にでも書いてろ」と言われそうなレベルのことを書くためのアプリ。",
       "会員登録不要でいつでもかけるのが売り。",
-      "2020年あたりに何かWebアプリ作ろうと思っての習作。Nuxt.jsを選んだことに特に意味はない。機会があれば直すかリメイクして再公開したい",
+      "2020年あたりに何かWebアプリ作ろうと思っての習作。Nuxt.jsを選んだことに特に意味はない。",
     ],
     technologies: ["Nuxt.js", "Firebase"],
     badges: { Released: true, },
